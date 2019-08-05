@@ -7,5 +7,7 @@ defmodule BioskopWeb.Router do
 
   scope "/api", BioskopWeb do
     pipe_through :api
+
+    resources "/movies", MovieController, except: [:new, :edit]
   end
 end
