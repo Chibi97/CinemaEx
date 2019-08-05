@@ -7,7 +7,10 @@ defmodule BioskopWeb.Formatter do
 
   def metadata(count, data, name \\ :collection) do
     %{
-      count: count,
-    } |> Map.put(name, data)
+      :count => count,
+      "#{name}" => data
+    }
+
+    # |> Map.put(name, data)
   end
 end

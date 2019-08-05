@@ -21,6 +21,6 @@ defmodule BioskopWeb.MovieController do
       }
     ]
 
-    render conn, movies: movies
+    render(conn, movies: movies)
   end
 end
