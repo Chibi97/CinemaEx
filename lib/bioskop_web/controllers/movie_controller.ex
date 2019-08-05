@@ -1,26 +1,24 @@
 defmodule BioskopWeb.MovieController do
   use BioskopWeb, :controller
+  alias Bioskop.Movies
 
   def index(conn, _params) do
-    movies = [
-      %{
-        id: 1,
-        title: "Moj Film #1",
-        description: "A fun movie.",
-        rating: "E",
-        score_user: 10.0,
-        score_critics: 8.3
-      },
-      %{
-        id: 2,
-        title: "Moj Film #2",
-        description: "A fun movie 2.",
-        rating: "M",
-        score_user: 5.3,
-        score_critics: 3.3
-      }
-    ]
-
+    movies = Movies.list_movies()
     render(conn, movies: movies)
+  end
+
+  def create(conn, params) do
+    case Movies.create_movie(params) do
+      {:ok, _} -> conn |> send_resp(201, "")
+      {:error, changeset} ->
+        result = changeset |> Ecto.Changeset.traverse_errors(&_translate_error/1)
+        conn
+          |> put_status(400)
+          |> render("error.json", errors: result)
+    end
+  end
+
+  defp _translate_error({message, _}) do
+    message
   end
 end
