@@ -23,6 +23,7 @@ defmodule BioskopWeb do
 
       import Plug.Conn
       import BioskopWeb.Gettext
+      import BioskopWeb.Controllers.Utils
       alias BioskopWeb.Router.Helpers, as: Routes
     end
   end
