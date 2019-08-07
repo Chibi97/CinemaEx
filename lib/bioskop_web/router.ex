@@ -3,6 +3,7 @@ defmodule BioskopWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug BioskopWeb.Plug.Lang
   end
 
   scope "/api", BioskopWeb do

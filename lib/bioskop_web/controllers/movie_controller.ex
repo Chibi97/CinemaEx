@@ -18,7 +18,10 @@ defmodule BioskopWeb.MovieController do
     end
   end
 
-  defp _translate_error({message, _}) do
-    message
+  defp _translate_error({message, opts}) do
+    case opts[:count] do
+      nil -> Gettext.dgettext(BioskopWeb.Gettext, "errors", message, opts)
+      count -> Gettext.dngettext(BioskopWeb.Gettext, "errors", message, message, count, opts)
+    end
   end
 end
