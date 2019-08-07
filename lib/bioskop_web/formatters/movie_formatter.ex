@@ -9,10 +9,13 @@ defmodule BioskopWeb.MovieFormatter do
     metadata(length(movies_list), movies_list, :movies)
   end
 
+  def format(movie), do: _format(movie)
+
   defp _format(movie) do
     %{
-      title: movie.name,
-      summary: movie.description,
+      id: movie.id,
+      name: movie.name,
+      description: movie.description,
       duration: "#{movie.duration}min"
     } |> _maybe_score(movie)
   end

@@ -19,6 +19,7 @@ defmodule Bioskop.Movies.Movie do
     movie
       |> cast(attrs, [:name, :description, :duration])
       |> validate_required([:name, :description, :duration])
+      |> validate_length(:name, min: 2, max: 30)
   end
 
 end

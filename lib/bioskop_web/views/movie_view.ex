@@ -11,4 +11,8 @@ defmodule BioskopWeb.MovieView do
   def render("error.json", %{errors: errors}) do
     %{errors: errors}
   end
+
+  def render("show.json", %{movie: movie}) do
+    MovieFormatter.format(movie)
+  end
 end
